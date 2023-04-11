@@ -1,0 +1,71 @@
+1) MORE INFORMATION FOR SCANME.NMAP.ORG:
+                                            nmap.scanme.nmap.org
+                                            Starting Nmap 7.93 ( https://nmap.org ) at 2023-04-09 12:32 EDT
+                                            Nmap scan report for scanme.nmap.org (45.33.32.156)
+                                            Host is up (0.30s latency).
+                                            Other addresses for scanme.nmap.org (not scanned): 2600:3c01::f03c:91ff:fe18:bb2f
+                                            Not shown: 996 filtered tcp ports (no-response)
+                                            PORT      STATE SERVICE
+                                            22/tcp    open  ssh
+                                            80/tcp    open  http
+                                            9929/tcp  open  nping-echo
+                                            31337/tcp open  Elite
+
+                                            Nmap done: 1 IP address (1 host up) scanned in 51.41 seconds
+
+
+                                            Nmap done: 1 IP address (1 host up) scanned in 51.41 seconds
+2) SEARCH WITH NMAP IN TERMINAL:
+                                            nmap.facebook.com:
+                                            starting Nmap 7.93 ( https://nmap.org ) at 2023-04-09 12:40 EDT
+                                            Nmap scan report for facebook.com (157.240.192.35)
+                                            Host is up (0.025s latency).
+                                            rDNS record for 157.240.192.35: edge-star-mini-shv-02-maa2.facebook.com
+                                            Not shown: 995 filtered tcp ports (no-response), 3 filtered tcp ports (host-unreach)
+                                            PORT    STATE SERVICE
+                                            80/tcp  open  http
+                                            443/tcp open  https
+
+                                            Nmap done: 1 IP address (1 host up) scanned in 134.17 seconds
+               
+
+3) OUTPUT IN A FILE:
+                                            filename:nmap.txt
+                                            
+                                            
+4) GET THE:
+
+i) IP ADDRESS OF KMIT :          206.54.190.30
+
+ii) OPEN PORTS AND SERVICES:  
+                                 PORT  STATE SERVICE
+                                21/tcp  open  ftp
+                                22/tcp  open  ssh
+                                80/tcp  open  http
+                                110/tcp open  pop3
+                                143/tcp open  imap
+                                443/tcp open  https
+                                465/tcp open  smtps
+                                587/tcp open  submission
+                                993/tcp open  imaps
+                                995/tcp open  pop3s
+          
+iii) OPERATING SYSTEMS :  
+                                 Actiontec MI424WR-GEN3I WAP (95%), Linux 3.2 (95%), DD-WRT v24-sp2 (Linux 2.4.37) (94%), Linux 4.4 (94%),
+                                 Microsoft Windows XP SP3 or Windows 7 or Windows Server 2012 (91%), Microsoft Windows XP SP3 (91%), BlueArc Titan 2100 NAS device (87%)
+                                 No exact OS matches for host (test conditions non-ideal) 
+
+                                 Version:
+                                 PORT     STATE SERVICE   VERSION
+                                 21/tcp   open  ftp       Pure-FTPd
+                                 22/tcp   open  ssh       OpenSSH 8.0 (protocol 2.0)
+                                 80/tcp   open  http      LiteSpeed
+                                 110/tcp  open  pop3      Dovecot pop3d
+                                 143/tcp  open  imap      Dovecot imapd
+                                 443/tcp  open  ssl/https LiteSpeed
+                                 465/tcp  open  ssl/smtp  Exim smtpd 4.96
+                                 554/tcp  open  rtsp?
+                                 587/tcp  open  smtp      Exim smtpd 4.96
+                                 993/tcp  open  imaps?
+                                 995/tcp  open  pop3s?
+                                 1723/tcp open  pptp?
