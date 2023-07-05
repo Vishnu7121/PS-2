@@ -1,5 +1,9 @@
 !/bin/bash
 sudo apt-get update
+sudo apt-get update && sudo apt-get install -y docker.io
+sudo apt-get install -y docker-compose
+sudo apt-get update && sudo apt-get install -y ant
+
 # sudo apt install mysql-server-5.7
 
 # Install Docker
