@@ -60,16 +60,13 @@ else
     echo "No such image"
 fi
 
-# Build the Docker image
-echo "Building the Docker image"
-sudo docker-compose build
+# # Build the Docker image
+# echo "Building the Docker image"
+# sudo docker-compose build
 
-# Create the test.war file
-echo "Creating test.war file..."
-sudo touch ./dist/test.war
-
-cd
-cd srikanth/SQL-Injection
+# # Create the test.war file
+# echo "Creating test.war file..."
+# sudo touch ./dist/test.war
 # Start the Docker containers
 echo "Starting the Docker containers"
 sudo docker-compose up -d
