@@ -1,4 +1,4 @@
-#!/bin/bash
+##!/bin/bash
 sudo apt-get update
 sudo apt-get update && sudo apt-get install -y docker.io
 sudo apt-get install -y docker-compose
@@ -68,6 +68,9 @@ sudo docker-compose build
 echo "Creating test.war file..."
 sudo touch ./dist/test.war
 
+cd
+cd srikanth
+cd srikanth/SQL-Injection
 # Start the Docker containers
 echo "Starting the Docker containers"
 sudo docker-compose up -d
