@@ -70,3 +70,4 @@ fi
 # Start the Docker containers
 echo "Starting the Docker containers"
 sudo docker-compose up -d
+sudo docker-compose up -d
