@@ -42,7 +42,7 @@ fi
 cd "$DIR" || exit
 
 echo "Cloning SQL-Injection"
-sudo git clone https://github.com/srikanthreddy-lectures/SQL-Injection.git
+sudo git clone https://github.com/Vishnu7121/SQL-Injection.git
 
 cd ./SQL-Injection/ || exit
 
