@@ -44,7 +44,7 @@ cd "$DIR" || exit
 echo "Cloning SQL-Injection"
 sudo git clone https://github.com/VishnuDeshmukh21/XSS.git
 
-cd ./SQL-Injection/ || exit
+cd ./XSS/ || exit
 
 sudo ant -d clean compile dist
 # Add code to execute the DB_INIT.SQL file
