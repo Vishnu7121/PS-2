@@ -68,7 +68,8 @@ if [[ -n "$result" ]]; then
 else
     echo "No such image"
 fi
-
+sudo docker stop $(sudo docker ps -q)
+sudo docker-compose down
 # # Build the Docker image
 # echo "Building the Docker image"
 # sudo docker-compose build
