@@ -45,7 +45,7 @@ ZIP_URL="https://sql.s3.amazonaws.com/SQL-Injection.zip"
 
 echo "Downloading ZIP file..."
 sudo apt-get install -y curl
-curl -o SQL-Injection.zip "https://sql.s3.amazonaws.com/SQL-Injection.zip"
+sudo curl -o SQL-Injection.zip "https://sql.s3.amazonaws.com/SQL-Injection.zip"
 
 echo "Unzipping repository..."
 sudo apt-get install -y unzip
