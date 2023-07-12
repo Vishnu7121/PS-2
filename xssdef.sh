@@ -50,7 +50,7 @@ sudo chmod +x SQL-Injection.zip
 
 echo "Unzipping repository..."
 sudo apt-get install -y unzip
-unzip SQL-Injection.zip -d SQL-Injection
+sudo unzip SQL-Injection.zip -d SQL-Injection
 
 cd ./SQL-Injection/ || exit
 cd VishnuDeshmukh21-SQL-Injection-5352ffd
