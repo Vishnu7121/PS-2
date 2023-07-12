@@ -60,14 +60,14 @@ sudo ant -d clean compile dist
 # echo "Executing the DB_INIT.SQL script"
 # sudo mysql -u srikanth -p17121981 -e "DROP DATABASE IF EXISTS demo1; CREATE DATABASE demo1; USE demo1; $(cat ./DB_INIT.SQL)"
 
-result=$(sudo docker images -q sql-injection_web)
+# result=$(sudo docker images -q sql-injection_web)
 
-if [[ -n "$result" ]]; then
-    echo "Image exists"
-    sudo docker-compose down --volume --rmi all
-else
-    echo "No such image"
-fi
+# if [[ -n "$result" ]]; then
+#     echo "Image exists"
+#     sudo docker-compose down --volume --rmi all
+# else
+#     echo "No such image"
+# fi
 sudo docker stop $(sudo docker ps -q)
 sudo docker-compose down
 # # Build the Docker image
