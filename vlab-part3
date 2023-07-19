@@ -1,0 +1,33 @@
+{
+  "obj": "Display the default dump file location on a Linux server",
+  "info": [
+    "The system dump file contains information that is useful when troubleshooting system crashes. This information includes the kernel state, helping to identify driver or application issues related to the crash. You have decided to confirm the kernel dump location on the LX1 virtual machine. You will display this information by searching the /etc/kdump.conf configuration file.",
+  ],
+  "questions": [
+        {
+      "id": 1,
+      "question": "On the LX1 VM, search the /etc/kdump.conf file to discover the default location of kernel dump crash files on a RHEL-based Linux distribution.",
+      "command": "cat /etc/kdump.conf | grep -i \"path\"",
+      "info": "Many results will be displayed. The one you need has no hash # character at the start of the line."
+    },
+    {
+      "id": 2,
+      "question": "Which of the following is the path for the kernel dump file on the LX1 virtual machine?",
+      "options": [
+        "/var/crash",
+        "/etc/kdump.conf",
+        "/sys",
+        "/etc/crash",
+        "/var/log"
+      ],
+      "dropdown": "Kernel dump path",
+      "pic": true,
+      "info": [
+        "The purpose behind Assisted Labs is to confirm your knowledge and guide you through the given configurations. If you get a scored question incorrect, you may repeat the question and achieve the correct answer. You do not need a correct answer to move forward through the lab."
+      ]
+    }
+  ]
+  
+      
+  
+}
