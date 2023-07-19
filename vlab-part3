@@ -13,6 +13,7 @@
     {
       "id": 2,
       "question": "Which of the following is the path for the kernel dump file on the LX1 virtual machine?",
+"score":true,
       "options": [
         "/var/crash",
         "/etc/kdump.conf",
@@ -22,7 +23,7 @@
       ],
       "dropdown": "Kernel dump path",
       "pic": true,
-      "info": [
+      "dropinfo": [
         "The purpose behind Assisted Labs is to confirm your knowledge and guide you through the given configurations. If you get a scored question incorrect, you may repeat the question and achieve the correct answer. You do not need a correct answer to move forward through the lab."
       ]
     }
