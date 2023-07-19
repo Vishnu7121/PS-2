@@ -1,0 +1,93 @@
+{
+  "obj": "Configure a server for centralized log files",
+  "info": [
+    "Configure the LX1 virtual machine as central rsyslog log file storage server."
+  ],
+  "questions": [
+    {
+      "id": "1",
+      "question": "Log on to the LX1 Linux VM with the CentOS with a password of Pa$$w0rd.",
+      "info": [
+        "The CentOS account is a non-privileged account. In the real world, you could use sudo to run root-level commands. You can also use the su - root option, as you will in this activity."
+      ]
+    },
+    {
+      "id": "2",
+      "question": "Select Applications > Favorites > Terminal to open a Terminal window.",
+      "info": [
+        "You may find it beneficial to maximize the Terminal window."
+      ]
+    },
+    {
+      "id": "3",
+      "question": "Enter su - root to get root credentials. Enter Pa$$w0rd when prompted.",
+      "info": [
+        "There is a space on each side of the dash character.",
+        "In the Linux vernacular, the phrase 'get root' means to use su to gain root privileges."
+      ]
+    },
+    {
+      "id": "4",
+      "question": "Use vim to open the /etc/rsyslog.conf configuration file.",
+      "dropdown": "Vim quick reference",
+      "dropinfo": "Move between modes:\nTo enter Command mode - ESC\nTo enter Insert mode - i\nTo enter Execute mode - :\nAfter editing a file:\nSave and quit - :wq\nQuit without saving - :q!\nUse arrow keys to navigate\nWhen in doubt, press ESC to enter Command mode.\nEditing process:\nvim filename opens the file\ni enters Insert mode\nNavigate the file with arrow keys\nEdit file contents while in Insert mode\nESC returns to Command mode\n:wq saves file and quits Vim"
+    },
+    {
+      "id": "5",
+      "question": "Uncomment the following two lines by selecting the # sign and pressing x in Vim's Command mode. These two lines enable the LX1 server's rsyslog service to accept inbound connections.",
+      "info": [
+        "$ModLoad imudp",
+        "$UDPServerRun 514"
+      ]
+    },
+    {
+      "id": "6",
+      "question": "Use the DOWN ARROW key to navigate to the empty line just before",
+      "info": [
+        "#### GLOBAL DIRECTIVES ####"
+      ]
+    },
+    {
+      "id": "7",
+      "question": "Enter the following text on three separate lines:",
+      "info": [
+        "$template DynamicFile,\"/var/log/%HOSTNAME%.log\"",
+        "*.* ?DynamicFile",
+        "& ~"
+      ],
+      "listinfo": "The line $template DynamicFile,\"/var/log/%HOSTNAME%.log\" defines a template format named DynamicFile that creates a log named for the server's hostname. In this scenario, it will generate a log file named KALI.log that originates from the KALI Linux server.\nThe line *.* ?DynamicFile states that all Rsyslog facilities (services and applications) of all severities (alert levels) will be sent via the template.\nThe line & ~ stops any process matching after this point."
+    },
+    {
+      "id": "8",
+      "question": "Press ESC, and then enter :wq to write your changes to the file and quit Vim."
+    },
+    {
+      "id": "9",
+      "question": "Confirm that the $template entry exists in /etc/rsyslog.conf on LX1",
+      "score":true
+    },
+    {
+      "id": "10",
+      "question": "Run the following command to restart the rsyslog service:",
+      "command": "systemctl restart rsyslog"
+    },
+    {
+      "id": "11",
+      "question": "Configure the firewall by entering the following three commands:",
+      "command": [
+        "firewall-cmd --add-port=514/udp --permanent",
+        "firewall-cmd --reload",
+        "firewall-cmd --list-all"
+      ],
+      "info": [
+        "The output of the firewall-cmd --list-all command should contain a line 'ports:' that displays 514/udp"
+      ]
+    },
+    {
+      "id": "12",
+      "question": "(score)Confirm that the 514/udp port is open on the firewall on LX1.",
+      "dropdown": "Firewall configurations.",
+      "pic": true
+    }
+  ]
+}
