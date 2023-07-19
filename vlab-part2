@@ -6,38 +6,37 @@
   ],
   "questions": [
     {
-      "id": "1",
+      "id": 1,
       "question": "Open a terminal and use vim to open the /etc/rsyslog.conf configuration file."
     },
     {
-      "id": "2",
+      "id": 2,
       "question": "Use the DOWN ARROW key to find the first uncommented line in the #### RULES #### section."
     },
     {
-      "id": "3",
+      "id": 3,
       "question": "Add the following line before any other lines to forward all messages via UDP to LX1:",
       "info": [
         "*.* @10.1.0.10:514"
       ],
       "dropdown": "Edit /etc/rsyslog.conf",
-      "pic": true,
-      "dropinfo": "You need to place the configuration line such that it is the first line in the RULES section. This causes it to be processed before all other rules."
+      "pic": true
     },
     {
-      "id": "4",
-      "question": "Press ESC, and then enter :wq to write your changes to the file and quit Vim."
+      "id": 4,
+      "question": "Select ESC, and then enter :wq to write your changes to the file and quit Vim."
     },
     {
-      "id": "5",
-      "question": "(score)Confirm that the PT1-Kali virtual machine is configured to forward log files to the LX1 virtual machine."
+      "id": 5,
+      "question": "Confirm that the PT1-Kali virtual machine is configured to forward log files to the LX1 virtual machine."
     },
     {
-      "id": "6",
+      "id": 6,
       "question": "Run the following command to restart the rsyslog service:",
       "command": "systemctl restart rsyslog"
     },
     {
-      "id": "7",
+      "id": 7,
       "question": "Run the following command to generate a test message:",
       "command": "logger \"Test from Kali\"",
       "info": [
@@ -45,35 +44,36 @@
       ]
     },
     {
-      "id": "8",
+      "id": 8,
       "question": "Run the following command to display the test message from the local log file:",
       "command": "cat /var/log/messages | grep -i test"
     },
     {
-      "id": "9",
+      "id": 9,
       "question": "Switch to the LX1 VM.",
       "info": [
-        "If the privacy shade is active, use your mouse to click anywhere on the screen, and then press ENTER. The login prompt should be displayed. You may need to enter Pa$$w0rd again."
-      ]
+        "If the privacy shade is active, use your mouse to click anywhere in the screen, and then press ENTER. The login prompt should be displayed. You may need to enter Pa$$w0rd again."
+      ],
+      "command": "cd /var/log"
     },
     {
-      "id": "10",
+      "id": 10,
       "question": "Run the following command to switch to the /var/log directory:",
       "command": "cd /var/log"
     },
     {
-      "id": "11",
+      "id": 11,
       "question": "Run the following command to display the contents of the /var/log directory:",
       "command": "ls"
     },
     {
-      "id": "12",
+      "id": 12,
       "question": "Run the following command to display the test message on the central log server:",
       "command": "cat /var/log/KALI.log | grep -i \"test\""
     },
     {
-      "id": "13",
-      "question": "(score)Confirm that the KALI.log file exists in /var/log on the LX1 server.",
+      "id": 13,
+      "question": "Confirm that the KALI.log file exists in /var/log on the LX1 server.",
       "dropdown": "KALI.log",
       "pic": true,
       "info": [
@@ -87,8 +87,18 @@
       ]
     },
     {
-      "id": "14",
-      "question": "The RT1-LOCAL VyOS router used in the lab environment is also Linux-based. You could repeat the above process to cause the router to forward its log files to the LX1 VM. Doing so from all the Linux, Unix, and macOS devices in your environment would provide you with centralized logging for more efficient monitoring, archiving, and auditing."
-    }
+      "id": 14,
+      "question": "The RT1-LOCAL VyOS router used in the lab environment is also Linux-based. You could repeat the above process to cause the router to forward its log files to the LX1 VM. Doing so from all the Linux, Unix, and macOS devices in your environment would provide you with centralized logging for more efficient monitoring, archiving, and auditing.",
+"info":"If the KALI.log file does not appear on LX1, check the following configurations:
+LX1 /etc/rsyslog - review the entries for UDP logging
+LX1 /etc/rsyslog.conf - review the entries for the $template
+LX1 - confirm the firewall settings
+LX1 - restart the rsyslog service
+PT1-Kali /etc/rsyslog.conf - confirm that . @10.1.0.10:514 appears in the RULES section
+PT1-Kali - restart the rsyslog service
+
+The RT1-LOCAL VyOS router used in the lab environment is also Linux-based. You could repeat the above process to cause the router to forward its log files to the LX1 VM. Doing so from all the Linux, Unix, and macOS devices in your environment would provide you with centralized logging for more efficient monitoring, archiving, and auditing."
+
+
   ]
 }
