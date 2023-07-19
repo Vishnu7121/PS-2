@@ -1,0 +1,59 @@
+{
+  "obj": "Configure a Windows remote administrator console",
+  "info": [
+    "Monitoring and managing servers remotely can be more secure and easier. You can configure a single workstation to remotely connect to Microsoft Management Console (MMC) tools on other servers, providing you with access to server information quickly. In this task, you will configure an MMC console on the MS1 virtual machine that connects to the DC1 virtual machine.",
+
+  ],
+  "questions": [
+     {
+      "id": 1,
+      "question": "On the MS1 VM, right-click the Start menu, and then select Run.",
+    },
+      {
+      "id": 2,
+      "question": "In the Run dialog, type mmc and then press ENTER. Select Yes when prompted to confirm UAC",
+        "info":[" blank Microsoft Management Console opens.","You can customize MMC consoles by adding snap-ins. Snap-ins are tools and interfaces. Many of these snap-ins can connect across the network to remote servers."]
+    },
+  
+
+    {
+      "id": 3,
+      "question": "From the File menu, select Add/Remove Snap-in.",
+    },
+    {
+      "id": 4,
+      "question": "Select the following snap-ins, and select the Add button to place them in the Selected snap-ins column:",
+      "info":["Computer Management","Event Viewer","Services","Windows Firewall with Advanced Security"]
+
+    },
+     {
+      "id": 5,
+      "question": "For each console, select the radio button for Another computer, and then type DC1. Select Finish to complete the setting for that console.",
+    },
+     {
+      "id": 6,
+      "question": "Select OK after you have added the specified consoles.",
+    },
+      {
+      "id": 7,
+      "question": "From the File menu, select Save. Save the new console to the Desktop with DC1-console as the name.",
+      "info":["You may add or remove snap-ins from this console. You may also add snap-ins that point to other computers. Doing so provides a single console with management and monitoring tools that point to multiple servers, allowing you to administer many servers from a single interface."]
+    },
+    {
+      "id": 8,
+      "question": " Leave the console open.",
+    },
+    {
+      "id": 9,
+      "question": " Which of the following answers best approximates the total size of the C:\ drive on DC1? (Hint: Use the Computer Management snap-in)",
+      "score":true,
+      "options":["27.5 GB","100 GB","79.45 GB","42 GB","32.75 GB"]
+    },
+        {
+      "id": 10,
+      "question": "Which of the following answers is the status of the Server service, as displayed in the Services snap-in?",
+      "score":true,
+      "options":["Disabled","Running","Paused","Stopped","Zombie"]
+    },
+  ]
+}
