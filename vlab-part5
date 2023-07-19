@@ -1,0 +1,41 @@
+{
+  "obj": "Comprehensive questions",
+  "info": [
+    "Answer the following final comprehensive questions to ensure that you recognize the importance of the activity steps and the uses for the information you have learned."
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which of the following best describes the reason for centralizing log files on a single server?",
+      "options": [
+        "Centralized log files are requires for Linux networks.",
+        "Centralized log files are not a good security practice.",
+        "Centralized log files are easier to delete in bulk.",
+        "Centralized log files are easier to search and archive."
+      ],
+      "score": true
+    },
+    {
+      "id": 2,
+      "question": "Why are Kali and VyOS able to forward log files to a central CentOS Linux server?",
+      "options": [
+        "rsyslog is native to all operating systems, including Linux, Unix, and Windows.",
+        "rsyslog is common to Unix and Linux operating systems.",
+        "The network is routed, and rsyslog only functions on routed networks.",
+        "Python was used to convert the log files into a universal format.",
+        "JavaScript was used to convert the log files into a universal format."
+      ]
+    },
+    {
+      "id": 3,
+      "question": "When configuring the rsyslog service on the Linux virtual machines, why did you have to restart rsyslog after making changes to the /etc/rsyslog.conf configuration file?",
+      "options": [
+        "Restarting the service is a good practice.",
+        "Restarting Linux services causes the service to re-read the configuration file and integrate changes.",
+        "Editing the configuration file stops the service automatically.",
+        "Based on its design, rsyslog requires the service to be restarted."
+      ],
+      "score": true
+    }
+  ]
+}
