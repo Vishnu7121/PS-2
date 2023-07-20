@@ -1,0 +1,340 @@
+
+  "Lab": 
+
+    {
+      "title": "Lab @5",
+      "Labs":[
+        {
+  "title": "Configure a server for centralized log files",
+  "info": [
+    "Configure the LX1 virtual machine as central rsyslog log file storage server."
+  ],
+  "questions": [
+    {
+      "id": "1",
+      "question": "Log on to the LX1 Linux VM with the CentOS with a password of Pa$$w0rd.",
+      "info": [
+        "The CentOS account is a non-privileged account. In the real world, you could use sudo to run root-level commands. You can also use the su - root option, as you will in this activity."
+      ]
+    },
+    {
+      "id": "2",
+      "question": "Select Applications > Favorites > Terminal to open a Terminal window.",
+      "info": [
+        "You may find it beneficial to maximize the Terminal window."
+      ]
+    },
+    {
+      "id": "3",
+      "question": "Enter su - root to get root credentials. Enter Pa$$w0rd when prompted.",
+      "info": [
+        "There is a space on each side of the dash character.",
+        "In the Linux vernacular, the phrase 'get root' means to use su to gain root privileges."
+      ]
+    },
+    {
+      "id": "4",
+      "question": "Use vim to open the /etc/rsyslog.conf configuration file.",
+      "dropdown": "Vim quick reference",
+      "dropinfo": "Move between modes:\nTo enter Command mode - ESC\nTo enter Insert mode - i\nTo enter Execute mode - :\nAfter editing a file:\nSave and quit - :wq\nQuit without saving - :q!\nUse arrow keys to navigate\nWhen in doubt, press ESC to enter Command mode.\nEditing process:\nvim filename opens the file\ni enters Insert mode\nNavigate the file with arrow keys\nEdit file contents while in Insert mode\nESC returns to Command mode\n:wq saves file and quits Vim"
+    },
+    {
+      "id": "5",
+      "question": "Uncomment the following two lines by selecting the # sign and pressing x in Vim's Command mode. These two lines enable the LX1 server's rsyslog service to accept inbound connections.",
+      "info": [
+        "$ModLoad imudp",
+        "$UDPServerRun 514"
+      ]
+    },
+    {
+      "id": "6",
+      "question": "Use the DOWN ARROW key to navigate to the empty line just before",
+      "info": [
+        "#### GLOBAL DIRECTIVES ####"
+      ]
+    },
+    {
+      "id": "7",
+      "question": "Enter the following text on three separate lines:",
+      "info": [
+        "$template DynamicFile,\"/var/log/%HOSTNAME%.log\"",
+        "*.* ?DynamicFile",
+        "& ~"
+      ],
+      "listinfo": "The line $template DynamicFile,\"/var/log/%HOSTNAME%.log\" defines a template format named DynamicFile that creates a log named for the server's hostname. In this scenario, it will generate a log file named KALI.log that originates from the KALI Linux server.\nThe line *.* ?DynamicFile states that all Rsyslog facilities (services and applications) of all severities (alert levels) will be sent via the template.\nThe line & ~ stops any process matching after this point."
+    },
+    {
+      "id": "8",
+      "question": "Press ESC, and then enter :wq to write your changes to the file and quit Vim."
+    },
+    {
+      "id": "9",
+      "question": "Confirm that the $template entry exists in /etc/rsyslog.conf on LX1",
+      "score":true
+    },
+    {
+      "id": "10",
+      "question": "Run the following command to restart the rsyslog service:",
+      "command": "systemctl restart rsyslog"
+    },
+    {
+      "id": "11",
+      "question": "Configure the firewall by entering the following three commands:",
+      "command": [
+        "firewall-cmd --add-port=514/udp --permanent",
+        "firewall-cmd --reload",
+        "firewall-cmd --list-all"
+      ],
+      "info": [
+        "The output of the firewall-cmd --list-all command should contain a line 'ports:' that displays 514/udp"
+      ]
+    },
+    {
+      "id": "12",
+      "question": "(score)Confirm that the 514/udp port is open on the firewall on LX1.",
+      "dropdown": "Firewall configurations.",
+      "pic": true
+    }
+  ]
+        },
+        {
+  "title": "Forward log files from Kali",
+  "info": [
+    "In this task, you will configure the Kali Linux virtual machine to forward its log files to the LX1 VM. You must edit the /etc/rsyslog.conf file to accomplish this task.",
+    "Switch to the PT1-Kali VM, and then sign in as root, using Pa$$w0rd as the password."
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "question": "Open a terminal and use vim to open the /etc/rsyslog.conf configuration file."
+    },
+    {
+      "id": 2,
+      "question": "Use the DOWN ARROW key to find the first uncommented line in the #### RULES #### section."
+    },
+    {
+      "id": 3,
+      "question": "Add the following line before any other lines to forward all messages via UDP to LX1:",
+      "info": [
+        "*.* @10.1.0.10:514"
+      ],
+      "dropdown": "Edit /etc/rsyslog.conf",
+      "pic": true
+    },
+    {
+      "id": 4,
+      "question": "Select ESC, and then enter :wq to write your changes to the file and quit Vim."
+    },
+    {
+      "id": 5,
+      "question": "Confirm that the PT1-Kali virtual machine is configured to forward log files to the LX1 virtual machine."
+    },
+    {
+      "id": 6,
+      "question": "Run the following command to restart the rsyslog service:",
+      "command": "systemctl restart rsyslog"
+    },
+    {
+      "id": 7,
+      "question": "Run the following command to generate a test message:",
+      "command": "logger \"Test from Kali\"",
+      "info": [
+        "Don’t forget to use exactly the same names as specified in the instructions."
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Run the following command to display the test message from the local log file:",
+      "command": "cat /var/log/messages | grep -i test"
+    },
+    {
+      "id": 9,
+      "question": "Switch to the LX1 VM.",
+      "info": [
+        "If the privacy shade is active, use your mouse to click anywhere in the screen, and then press ENTER. The login prompt should be displayed. You may need to enter Pa$$w0rd again."
+      ],
+      "command": "cd /var/log"
+    },
+    {
+      "id": 10,
+      "question": "Run the following command to switch to the /var/log directory:",
+      "command": "cd /var/log"
+    },
+    {
+      "id": 11,
+      "question": "Run the following command to display the contents of the /var/log directory:",
+      "command": "ls"
+    },
+    {
+      "id": 12,
+      "question": "Run the following command to display the test message on the central log server:",
+      "command": "cat /var/log/KALI.log | grep -i \"test\""
+    },
+    {
+      "id": 13,
+      "question": "Confirm that the KALI.log file exists in /var/log on the LX1 server.",
+      "dropdown": "KALI.log",
+      "pic": true,
+      "info": [
+        "If the KALI.log file does not appear on LX1, check the following configurations:",
+        "- LX1 /etc/rsyslog - review the entries for UDP logging",
+        "- LX1 /etc/rsyslog.conf - review the entries for the $template",
+        "- LX1 - confirm the firewall settings",
+        "- LX1 - restart the rsyslog service",
+        "- PT1-Kali /etc/rsyslog.conf - confirm that . @10.1.0.10:514 appears in the RULES section",
+        "- PT1-Kali - restart the rsyslog service"
+      ]
+    },
+    {
+      "id": 14,
+      "question": "The RT1-LOCAL VyOS router used in the lab environment is also Linux-based. You could repeat the above process to cause the router to forward its log files to the LX1 VM. Doing so from all the Linux, Unix, and macOS devices in your environment would provide you with centralized logging for more efficient monitoring, archiving, and auditing.",
+"info":"If the KALI.log file does not appear on LX1, check the following configurations:
+LX1 /etc/rsyslog - review the entries for UDP logging
+LX1 /etc/rsyslog.conf - review the entries for the $template
+LX1 - confirm the firewall settings
+LX1 - restart the rsyslog service
+PT1-Kali /etc/rsyslog.conf - confirm that . @10.1.0.10:514 appears in the RULES section
+PT1-Kali - restart the rsyslog service
+
+The RT1-LOCAL VyOS router used in the lab environment is also Linux-based. You could repeat the above process to cause the router to forward its log files to the LX1 VM. Doing so from all the Linux, Unix, and macOS devices in your environment would provide you with centralized logging for more efficient monitoring, archiving, and auditing."
+
+
+  ]
+  },
+  {
+  "title": "Display the default dump file location on a Linux server",
+  "info": [
+    "The system dump file contains information that is useful when troubleshooting system crashes. This information includes the kernel state, helping to identify driver or application issues related to the crash. You have decided to confirm the kernel dump location on the LX1 virtual machine. You will display this information by searching the /etc/kdump.conf configuration file.",
+  ],
+  "questions": [
+        {
+      "id": 1,
+      "question": "On the LX1 VM, search the /etc/kdump.conf file to discover the default location of kernel dump crash files on a RHEL-based Linux distribution.",
+      "command": "cat /etc/kdump.conf | grep -i \"path\"",
+      "info": "Many results will be displayed. The one you need has no hash # character at the start of the line."
+    },
+    {
+      "id": 2,
+      "question": "Which of the following is the path for the kernel dump file on the LX1 virtual machine?",
+"score":true,
+      "options": [
+        "/var/crash",
+        "/etc/kdump.conf",
+        "/sys",
+        "/etc/crash",
+        "/var/log"
+      ],
+      "dropdown": "Kernel dump path",
+      "pic": true,
+      "dropinfo": [
+        "The purpose behind Assisted Labs is to confirm your knowledge and guide you through the given configurations. If you get a scored question incorrect, you may repeat the question and achieve the correct answer. You do not need a correct answer to move forward through the lab."
+      ]
+    }
+  ]
+  
+      
+  
+  },
+  {
+  "title": "Configure a Windows remote administrator console",
+  "info": [
+    "Monitoring and managing servers remotely can be more secure and easier. You can configure a single workstation to remotely connect to Microsoft Management Console (MMC) tools on other servers, providing you with access to server information quickly. In this task, you will configure an MMC console on the MS1 virtual machine that connects to the DC1 virtual machine.",
+
+  ],
+  "questions": [
+     {
+      "id": 1,
+      "question": "On the MS1 VM, right-click the Start menu, and then select Run.",
+    },
+      {
+      "id": 2,
+      "question": "In the Run dialog, type mmc and then press ENTER. Select Yes when prompted to confirm UAC",
+        "info":[" blank Microsoft Management Console opens.","You can customize MMC consoles by adding snap-ins. Snap-ins are tools and interfaces. Many of these snap-ins can connect across the network to remote servers."]
+    },
+  
+
+    {
+      "id": 3,
+      "question": "From the File menu, select Add/Remove Snap-in.",
+    },
+    {
+      "id": 4,
+      "question": "Select the following snap-ins, and select the Add button to place them in the Selected snap-ins column:",
+      "info":["Computer Management","Event Viewer","Services","Windows Firewall with Advanced Security"]
+
+    },
+     {
+      "id": 5,
+      "question": "For each console, select the radio button for Another computer, and then type DC1. Select Finish to complete the setting for that console.",
+    },
+     {
+      "id": 6,
+      "question": "Select OK after you have added the specified consoles.",
+    },
+      {
+      "id": 7,
+      "question": "From the File menu, select Save. Save the new console to the Desktop with DC1-console as the name.",
+      "info":["You may add or remove snap-ins from this console. You may also add snap-ins that point to other computers. Doing so provides a single console with management and monitoring tools that point to multiple servers, allowing you to administer many servers from a single interface."]
+    },
+    {
+      "id": 8,
+      "question": " Leave the console open.",
+    },
+    {
+      "id": 9,
+      "question": " Which of the following answers best approximates the total size of the C:\ drive on DC1? (Hint: Use the Computer Management snap-in)",
+      "score":true,
+      "options":["27.5 GB","100 GB","79.45 GB","42 GB","32.75 GB"]
+    },
+        {
+      "id": 10,
+      "question": "Which of the following answers is the status of the Server service, as displayed in the Services snap-in?",
+      "score":true,
+      "options":["Disabled","Running","Paused","Stopped","Zombie"]
+    },
+  ]
+  },
+  {
+  "title": "Comprehensive questions",
+  "info": [
+    "Answer the following final comprehensive questions to ensure that you recognize the importance of the activity steps and the uses for the information you have learned."
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which of the following best describes the reason for centralizing log files on a single server?",
+      "options": [
+        "Centralized log files are requires for Linux networks.",
+        "Centralized log files are not a good security practice.",
+        "Centralized log files are easier to delete in bulk.",
+        "Centralized log files are easier to search and archive."
+      ],
+      "score": true
+    },
+    {
+      "id": 2,
+      "question": "Why are Kali and VyOS able to forward log files to a central CentOS Linux server?",
+      "options": [
+        "rsyslog is native to all operating systems, including Linux, Unix, and Windows.",
+        "rsyslog is common to Unix and Linux operating systems.",
+        "The network is routed, and rsyslog only functions on routed networks.",
+        "Python was used to convert the log files into a universal format.",
+        "JavaScript was used to convert the log files into a universal format."
+      ]
+    },
+    {
+      "id": 3,
+      "question": "When configuring the rsyslog service on the Linux virtual machines, why did you have to restart rsyslog after making changes to the /etc/rsyslog.conf configuration file?",
+      "options": [
+        "Restarting the service is a good practice.",
+        "Restarting Linux services causes the service to re-read the configuration file and integrate changes.",
+        "Editing the configuration file stops the service automatically.",
+        "Based on its design, rsyslog requires the service to be restarted."
+      ],
+      "score": true
+    }
+  ]
+}
+
+        
+      ]
